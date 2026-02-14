@@ -1,0 +1,46 @@
+/* Import the original Tourest styles */
+@import '../assets/css/style.css';
+@import "tailwindcss";
+
+/* React-specific styles */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Ensure React components inherit the Tourest design system */
+.react-component {
+  font-family: var(--ff-heebo);
+}
+
+/* Smooth transitions for React state changes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Loading states */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--light-gray);
+  border-top: 4px solid var(--viridian-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

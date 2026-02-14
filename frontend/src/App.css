@@ -1,0 +1,15 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--oxford-blue);
+  text-align: center;
+  padding: 2rem;
+}

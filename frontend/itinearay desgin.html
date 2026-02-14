@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExploreEase - Itinerary Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #00bfa5, #4a00e0);
+      color: #333;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .main-content {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .left-panel, .right-panel {
+      flex: 1;
+      background-color: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .left-panel:hover {
+      transform: translateY(-4px);
+    }
+
+    /* User Profile */
+    .profile-card {
+      background-color: #f5f5ff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #ffd700;
+      color: #000;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .profile-card p {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.3rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #00bfa5;
+      box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.2);
+    }
+
+    .date-input {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .date-input .calendar-icon {
+      color: #999;
+      font-size: 1.1rem;
+    }
+
+    .budget-input {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .budget-input span {
+      font-weight: 600;
+      color: #00bfa5;
+    }
+
+    .generate-btn {
+      background: linear-gradient(90deg, #00bfa5, #4a00e0);
+      color: white;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Right Panel */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem;
+      background-color: #f9f9ff;
+    }
+
+    .travel-icon {
+      font-size: 5rem;
+      color: #00bfa5;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .placeholder-text {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    /* Itinerary Section */
+    .itinerary-section {
+      display: none;
+      margin-top: 3rem;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .itinerary-title {
+      text-align: center;
+      margin-bottom: 1.8rem;
+      color: #4a00e0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .itinerary-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background-color: #00bfa5;
+    }
+
+    .day-card {
+      margin-bottom: 1.5rem;
+      padding: 1.3rem;
+      background-color: #f9f9ff;
+      border-radius: 12px;
+      border-left: 5px solid #00bfa5;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: #2d2d2d;
+    }
+
+    .day-header i {
+      color: #00bfa5;
+    }
+
+    .day-content {
+      line-height: 1.7;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .note {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f0f0ff;
+      border-radius: 10px;
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-route"></i> Plan Your Journey with ExploreEase</h1>
+    <p class="subtitle">Tell us your details and we'll craft the perfect itinerary</p>
+
+    <div class="main-content">
+      <!-- Left Panel: Form -->
+      <div class="left-panel">
+        <div class="profile-card">
+          <div class="avatar">CO</div>
+          <div>
+            <h4>Welcome back!</h4>
+            <p>coc843325@gmail.com</p>
+          </div>
+        </div>
+
+        <form id="trip-form">
+          <div class="form-group">
+            <label for="start-place">Starting Place</label>
+            <input type="text" id="start-place" class="form-input" placeholder="e.g., Delhi" required />
+          </div>
+
+          <div class="form-group">
+            <label for="destination">Destination</label>
+            <input type="text" id="destination" class="form-input" placeholder="e.g., New York" required />
+          </div>
+
+          <div class="form-group">
+            <label for="people">Number of People</label>
+            <input type="number" id="people" class="form-input" value="1" min="1" required />
+          </div>
+
+          <div class="form-group">
+            <label for="start-date">Trip Start Date</label>
+            <div class="date-input">
+              <input type="date" id="start-date" class="form-input" required />
+              <i class="far fa-calendar-alt calendar-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="end-date">Trip End Date</label>
+            <div class="date-input">
+              <input type="date" id="end-date" class="form-input" required />
+              <i class="far fa-calendar-alt calendar-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Budget (₹)</label>
+            <div class="budget-input">
+              <span>₹</span>
+              <input type="number" id="budget" class="form-input" placeholder="e.g., 200000" required />
+            </div>
+          </div>
+
+          <button type="submit" class="generate-btn">
+            <i class="fas fa-magic"></i> Generate Itinerary
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Panel: Illustration -->
+      <div class="right-panel" id="preview-panel">
+        <i class="fas fa-suitcase-rolling travel-icon"></i>
+        <h3>Your Personalized Itinerary</h3>
+        <p class="placeholder-text">Fill in your trip details and click “Generate Itinerary”<br>We’ll plan your perfect journey with smart recommendations.</p>
+      </div>
+    </div>
+
+    <!-- Itinerary Results -->
+    <div class="itinerary-section" id="itinerary-section">
+      <h2 class="itinerary-title"><i class="fas fa-star"></i> Your Personalized Itinerary</h2>
+      <div class="note">
+        Note: Given the budget and the cost of international travel for 4 people, this itinerary focuses on affordable options including public transport and budget stays.
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <i class="fas fa-sun"></i>
+          <span>Day 1: (Aug 28, Thursday)</span>
+        </div>
+        <div class="day-content">
+          <strong>Morning:</strong> Depart from Delhi (DEL) to New York (JFK). Flight cost: ₹25,000/person (total ₹100,000).<br>
+          <strong>Evening:</strong> Arrive and take AirTrain + subway to Queens. Transport: ₹300/person (₹1,200 total).<br>
+          <strong>Night:</strong> Check into budget Airbnb (₹5,000 total).
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <i class="fas fa-sun"></i>
+          <span>Day 2: (Aug 29, Friday)</span>
+        </div>
+        <div class="day-content">
+          <strong>Morning:</strong> Subway to Manhattan (₹300/person). Visit Times Square and Central Park.<br>
+          <strong>Day:</strong> Explore Grand Central and NY Public Library (free).<br>
+          <strong>Evening:</strong> Dinner in Brooklyn (₹2,500 total). Return via subway.
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <i class="fas fa-sun"></i>
+          <span>Day 3: (Aug 30, Saturday)</span>
+        </div>
+        <div class="day-content">
+          <strong>Morning:</strong> Staten Island Ferry (free) for Statue of Liberty views.<br>
+          <strong>Day:</strong> Walk Wall Street & 9/11 Memorial. (Transport: ₹1,200 total)<br>
+          <strong>Evening:</strong> Walk Brooklyn Bridge, dinner in DUMBO (₹2,500 total).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('trip-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Hide preview
+      document.getElementById('preview-panel').style.display = 'none';
+
+      // Show itinerary
+      const itinerarySection = document.getElementById('itinerary-section');
+      itinerarySection.style.display = 'block';
+
+      // Animate in
+      setTimeout(() => {
+        itinerarySection.classList.add('animate-on-scroll');
+      }, 100);
+
+      // Smooth scroll to results
+      window.scrollTo({
+        top: itinerarySection.offsetTop - 100,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

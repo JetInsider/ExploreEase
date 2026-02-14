@@ -1,0 +1,294 @@
+.itinerary-page {
+    background: linear-gradient(135deg, #00bfa5, #4a00e0);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.itinerary-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.itinerary-page h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 3.2rem;
+    font-weight: 900;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.02em;
+}
+
+.itinerary-page p.subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    line-height: 1.4;
+}
+
+.itinerary-page .main-content {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.itinerary-page .left-panel,
+.itinerary-page .right-panel {
+    flex: 1;
+    background-color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.itinerary-page .left-panel:hover {
+    transform: translateY(-4px);
+}
+
+/* User Profile */
+.itinerary-page .profile-card {
+    background-color: #f5f5ff;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.itinerary-page .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffd700;
+    color: #000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itinerary-page .profile-card h4 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.itinerary-page .profile-card p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Form Styles */
+.itinerary-page .form-group {
+    margin-bottom: 1.3rem;
+}
+
+.itinerary-page .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.itinerary-page .form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    transition: border 0.3s ease;
+}
+
+.itinerary-page .form-input:focus {
+    outline: none;
+    border-color: #00bfa5;
+    box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.2);
+}
+
+.itinerary-page .date-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.itinerary-page .date-input .calendar-icon {
+    color: #999;
+    font-size: 1.1rem;
+}
+
+.itinerary-page .budget-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.itinerary-page .budget-input span {
+    font-weight: 600;
+    color: #00bfa5;
+}
+
+.itinerary-page .generate-btn {
+    background: linear-gradient(90deg, #00bfa5, #4a00e0);
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.itinerary-page .generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Right Panel */
+.itinerary-page .right-panel {
+    flex: 1;
+    background-color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.itinerary-page .travel-icon {
+    font-size: 4rem;
+    color: #00bfa5;
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.itinerary-page .right-panel h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.itinerary-page .placeholder-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #555;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.itinerary-page .placeholder-text .highlight {
+    color: #00bfa5;
+    font-weight: 700;
+}
+
+.itinerary-page .info-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #666;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px;
+    border-left: 4px solid #00bfa5;
+}
+
+/* Itinerary Section */
+.itinerary-page .itinerary-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.itinerary-page .itinerary-title {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    color: #4a00e0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.itinerary-page .itinerary-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: #00bfa5;
+}
+
+.itinerary-page .day-card {
+    margin-bottom: 1.5rem;
+    padding: 1.3rem;
+    background-color: #f9f9ff;
+    border-radius: 12px;
+    border-left: 5px solid #00bfa5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.itinerary-page .day-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #2d2d2d;
+}
+
+.itinerary-page .day-header i {
+    color: #00bfa5;
+}
+
+.itinerary-page .day-content {
+    line-height: 1.7;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.itinerary-page .note {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f0f0ff;
+    border-radius: 10px;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.itinerary-page .animate-on-scroll {
+    animation: fadeInUp 0.8s ease forwards;
+}

@@ -1,0 +1,524 @@
+.formatted-output {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #2c3e50;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: transparent;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.formatted-output::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #00bfa5, #4a00e0);
+}
+
+/* Note section */
+.note {
+  background: linear-gradient(135deg, #00bfa5, #4a00e0);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 191, 165, 0.3);
+  position: relative;
+  overflow: hidden;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.note::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.note i {
+  font-size: 1.4rem;
+  z-index: 1;
+  position: relative;
+  margin-top: 0.2rem;
+}
+
+.note span {
+  z-index: 1;
+  position: relative;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Day cards */
+.day-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  text-align: left;
+}
+
+.day-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #00bfa5, #4a00e0);
+}
+
+.day-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced day header */
+.day-header {
+  background: linear-gradient(135deg, #00bfa5, #4a00e0);
+  color: white;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.day-header span {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.day-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.day-card:hover .day-header::before {
+  left: 100%;
+}
+
+.day-header i {
+  font-size: 2rem;
+  color: #fff;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* Enhanced day content styling */
+.day-content {
+  padding: 2.5rem;
+  background: white;
+  position: relative;
+  text-align: left;
+}
+
+.day-content p {
+  background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #00bfa5;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: left;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.day-content p::before {
+  content: "•";
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: #00bfa5;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.day-content p:hover {
+  background: linear-gradient(135deg, #edf2f7 0%, #f7fafc 100%);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 191, 165, 0.1);
+}
+
+/* Activity items */
+.activity-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 16px;
+  border-left: 5px solid #00bfa5;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.activity-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 191, 165, 0.05) 0%, rgba(74, 0, 224, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.activity-item:hover {
+  background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+  transform: translateX(8px) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 191, 165, 0.15);
+}
+
+.activity-item:hover::before {
+  opacity: 1;
+}
+
+.activity-time {
+  min-width: 140px;
+  font-weight: 900;
+  color: #00bfa5;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0, 191, 165, 0.2);
+  letter-spacing: -0.02em;
+}
+
+.activity-time::before {
+  content: "🕐";
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 191, 165, 0.3));
+}
+
+.activity-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+
+.activity-description {
+  font-size: 1.2rem;
+  color: #1a202c;
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+/* Enhanced text formatting for better readability */
+.activity-description strong {
+  color: #00bfa5;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 191, 165, 0.2);
+}
+
+.activity-description em {
+  color: #4a00e0;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.activity-cost {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.01em;
+}
+
+.activity-cost::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.activity-cost:hover::before {
+  left: 100%;
+}
+
+.activity-cost:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+}
+
+.activity-tip {
+  background: linear-gradient(135deg, #feca57, #ff9ff3);
+  color: #1a202c;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 15px rgba(254, 202, 87, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.01em;
+}
+
+.activity-tip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.activity-tip:hover::before {
+  left: 100%;
+}
+
+.activity-tip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(254, 202, 87, 0.5);
+}
+
+.activity-cost i,
+.activity-tip i {
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Regular paragraphs with enhanced styling */
+.formatted-output p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  text-align: left;
+}
+
+/* Enhanced download button */
+.download-pdf-btn {
+  margin-top: 3rem;
+  padding: 1.5rem 3rem;
+  background: linear-gradient(135deg, #00bfa5, #4a00e0);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 25px rgba(0, 191, 165, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.download-pdf-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.download-pdf-btn:hover::before {
+  left: 100%;
+}
+
+.download-pdf-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 191, 165, 0.4);
+  background: linear-gradient(135deg, #00a08c, #3a00b3);
+}
+
+.download-pdf-btn:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.download-pdf-btn i {
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .formatted-output {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+    border-radius: 20px;
+  }
+
+  .day-header {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    gap: 1rem;
+  }
+
+  .day-content {
+    padding: 1.5rem;
+  }
+
+  .activity-item {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+
+  .activity-time {
+    min-width: auto;
+    font-size: 1.1rem;
+  }
+
+  .note {
+    padding: 1.5rem;
+    font-size: 1rem;
+    gap: 0.8rem;
+  }
+
+  .download-pdf-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Animation for day cards */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.day-card {
+  animation: slideInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.day-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.day-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.day-card:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+/* Floating animation for icons */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.day-header i {
+  animation: float 3s ease-in-out infinite;
+}
+
+.activity-time::before {
+  animation: float 2s ease-in-out infinite;
+}

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExploreEase - Hotel Search & Results</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #00bfa5, #4a00e0);
+      color: #333;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* Header */
+    .header {
+      color: white;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Search Card */
+    .search-card {
+      background-color: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 500px;
+      max-width: 90vw;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin: 0 auto;
+    }
+
+    .search-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #00bfa5;
+      box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.2);
+    }
+
+    .date-input {
+      position: relative;
+    }
+
+    .date-input input {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+
+    .calendar-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #999;
+      font-size: 1.1rem;
+    }
+
+    .guest-select {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 1rem;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    .search-btn {
+      background: linear-gradient(90deg, #00bfa5, #4a00e0);
+      color: white;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Background Decor */
+    .bg-decor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .decor-element {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(10px);
+      background-color: white;
+    }
+
+    .decor-1 {
+      width: 400px;
+      height: 400px;
+      top: 10%;
+      left: 10%;
+    }
+
+    .decor-2 {
+      width: 300px;
+      height: 300px;
+      bottom: 15%;
+      right: 10%;
+    }
+
+    .decor-3 {
+      width: 200px;
+      height: 200px;
+      top: 60%;
+      right: 20%;
+    }
+
+    /* Results Section */
+    .results-section {
+      display: none;
+      margin-top: 4rem;
+      padding: 0 20px;
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .results-header h2 {
+      font-size: 1.8rem;
+      color: #1a1a1a;
+    }
+
+    .results-header p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Hotel Card */
+    .hotel-card {
+      display: flex;
+      background-color: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .hotel-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .hotel-image {
+      width: 280px;
+      height: 200px;
+      object-fit: cover;
+      position: relative;
+    }
+
+    .price-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bfa5;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .price-tag span {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hotel-content {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hotel-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .hotel-location {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .hotel-description {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .amenity {
+      background-color: #f0f0f0;
+      color: #555;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 0.9rem;
+      color: #4a00e0;
+      margin-bottom: 0.5rem;
+    }
+
+    .rating i {
+      color: #ffc107;
+      margin-right: 0.3rem;
+    }
+
+    .hotel-buttons {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #00bfa5;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #00a08c;
+    }
+
+    .btn-secondary {
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Decor -->
+  <div class="bg-decor">
+    <div class="decor-element decor-1"></div>
+    <div class="decor-element decor-2"></div>
+    <div class="decor-element decor-3"></div>
+  </div>
+
+  <!-- Search Section -->
+  <div class="container">
+    <div class="header">
+      <h1>Find Your Perfect Stay</h1>
+      <p>Discover hand-picked hotels, from cozy boutique stays to luxury resorts — all tailored to your budget and preferences.</p>
+    </div>
+
+    <div class="search-card">
+      <form id="hotel-form">
+        <div class="form-group">
+          <label for="destination">Destination</label>
+          <input type="text" id="destination" class="form-input" placeholder="e.g., New York" required />
+        </div>
+
+        <div class="form-group">
+          <label for="check-in">Check-in Date</label>
+          <div class="date-input">
+            <input type="date" id="check-in" class="form-input" required />
+            <i class="far fa-calendar-alt calendar-icon"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="check-out">Check-out Date</label>
+          <div class="date-input">
+            <input type="date" id="check-out" class="form-input" required />
+            <i class="far fa-calendar-alt calendar-icon"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guests">Number of Guests</label>
+          <select id="guests" class="guest-select" required>
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5+ Guests</option>
+          </select>
+        </div>
+
+        <button type="submit" class="search-btn">
+          <i class="fas fa-search"></i> Search Hotels
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="results-section" id="results-section">
+    <div class="results-header">
+      <h2>Hotel Results</h2>
+      <p id="search-info">New York • Aug 20–27, 2025 • 1 room, 2 guests</p>
+    </div>
+
+    <!-- Hotel Cards -->
+    <div class="hotel-card">
+      <img src="https://via.placeholder.com/280x200" alt="The Plaza Hotel" class="hotel-image">
+      <div class="price-tag">
+        <strong>₹350</strong><br>
+        <span>per night</span>
+      </div>
+      <div class="hotel-content">
+        <h3 class="hotel-name">The Plaza Hotel</h3>
+        <div class="hotel-location">
+          <i class="fas fa-map-marker-alt"></i> New York
+        </div>
+        <p class="hotel-description">Luxury hotel in the heart of the city with stunning views.</p>
+        <div class="amenities">
+          <span class="amenity">Free WiFi</span>
+          <span class="amenity">Pool</span>
+          <span class="amenity">Spa</span>
+          <span class="amenity">Restaurant</span>
+        </div>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <span>4.8</span>
+        </div>
+        <div class="hotel-buttons">
+          <button class="btn btn-primary">View Details</button>
+          <button class="btn btn-secondary">Compare Prices</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <img src="https://via.placeholder.com/280x200" alt="Waldorf Astoria" class="hotel-image">
+      <div class="price-tag">
+        <strong>₹450</strong><br>
+        <span>per night</span>
+      </div>
+      <div class="hotel-content">
+        <h3 class="hotel-name">Waldorf Astoria</h3>
+        <div class="hotel-location">
+          <i class="fas fa-map-marker-alt"></i> New York
+        </div>
+        <p class="hotel-description">Iconic luxury hotel with world-class service and amenities.</p>
+        <div class="amenities">
+          <span class="amenity">Free WiFi</span>
+          <span class="amenity">Gym</span>
+          <span class="amenity">Spa</span>
+          <span class="amenity">Bar</span>
+        </div>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <span>4.9</span>
+        </div>
+        <div class="hotel-buttons">
+          <button class="btn btn-primary">View Details</button>
+          <button class="btn btn-secondary">Compare Prices</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <img src="https://via.placeholder.com/280x200" alt="The Ritz-Carlton" class="hotel-image">
+      <div class="price-tag">
+        <strong>₹380</strong><br>
+        <span>per night</span>
+      </div>
+      <div class="hotel-content">
+        <h3 class="hotel-name">The Ritz-Carlton</h3>
+        <div class="hotel-location">
+          <i class="fas fa-map-marker-alt"></i> New York
+        </div>
+        <p class="hotel-description">Elegant hotel offering sophisticated luxury and comfort.</p>
+        <div class="amenities">
+          <span class="amenity">Free WiFi</span>
+          <span class="amenity">Pool</span>
+          <span class="amenity">Gym</span>
+          <span class="amenity">Restaurant</span>
+        </div>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <span>4.7</span>
+        </div>
+        <div class="hotel-buttons">
+          <button class="btn btn-primary">View Details</button>
+          <button class="btn btn-secondary">Compare Prices</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('hotel-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const destination = document.getElementById('destination').value;
+      const checkIn = document.getElementById('check-in').value;
+      const checkOut = document.getElementById('check-out').value;
+      const guests = document.getElementById('guests').value;
+
+      // Update results header
+      document.getElementById('search-info').textContent = 
+        `${destination} • ${formatDate(checkIn)} – ${formatDate(checkOut)} • 1 room, ${guests} guest${guests > 1 ? 's' : ''}`;
+
+      // Show results section
+      const resultsSection = document.getElementById('results-section');
+      resultsSection.style.display = 'block';
+
+      // Smooth scroll to results
+      resultsSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+
+    // Helper: Format date (MM/DD)
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const date = new Date(dateStr);
+      return (date.getMonth() + 1) + '/' + date.getDate();
+    }
+  </script>
+</body>
+</html>

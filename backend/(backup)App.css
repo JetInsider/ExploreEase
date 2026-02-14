@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* src/App.css */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #003580;
+  padding: 20px;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+.loading, .error {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.error {
+  color: #d9534f;
+}
+
+.flights-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flight-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.airline-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 25%;
+}
+
+.airline-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.flight-details {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.time-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.time-info p {
+  margin: 0;
+}
+
+.duration {
+  color: #888;
+  font-size: 0.9em;
+  padding: 0.2rem 0.5rem;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.price-info {
+  text-align: right;
+  width: 20%;
+}
+
+.price-info h2 {
+  margin: 0 0 10px 0;
+  color: #003580;
+}
+
+.price-info button {
+  background-color: #0071c2;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.price-info button:hover {
+  background-color: #005a9e;
+}
